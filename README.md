@@ -24,6 +24,7 @@ jwt : `pip install Flask-JWT`
 ## Usage
 
 You will need to have a client_id and a client_secret and store them in a json file named client_credentials.json.
+
 If you don't have them contact contact@talao.io
 
 Launch using python
