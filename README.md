@@ -31,3 +31,7 @@ python main.py
 
 By default this app will launch on 127.0.0.1:5000 you can change it at the bottom of main.py
 
+## License
+
+See the [LICENSE](https://github.com/AlexLeclerc102/talao_api_certificates_issuer/blob/master/LICENSE) file for license rights and limitations (MIT).
+
