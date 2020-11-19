@@ -3,6 +3,8 @@
 
 This is a demo for talao.co's API
 
+Use case : you are a company/University/training organization and you want to issue certificates to your employee/students. Using the Talao APi you will be able to create a Talao identity and issue a certificate to it. You can choose the type of certificate you want to issue (experience/training/education)
+
 This demo shows how to create an identity, issue certificates for this identity and get access to those certificates. When creating an identity with the API you automatically will be added to it's partner and referent list. This allows you to issue certificates without having to ask the user to connect to talao.co and add you himself.
 
 ## Documentation
