@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <title>User list</title>
+</head>
+
+<body id="page-top">
+
+  Identities
+  <hr>
+  {% for identity in identity_list%}
+  <p>Name : {{identity["name"]}} <br>
+    Lastname : {{identity["lastname"]}}</p>
+  <form name="form" action="/get_certificate_list?did={{identity['did']}}" method="POST">
+    <strong>List certificates : <br></strong>
+    <div class="form-group" style="margin-bottom:20px;"><label>Type: </label><select class="mx-5" name="type" required>
+        <option selected value="experience"> Experience </option>
+        <option value="recommendation"> Recommendation </option>
+        <option value="agreement"> Agreement </option>
+        <option value="skills"> Skills </option>
+        <option value="educational"> Education </option>
+      </select>
+    <button type="submit">Show</button></div>
+  </form>
+
+  <form name="form" action="/issue_certificate?did={{identity['did']}}" method="POST">
+    <strong>Issue a certificate : <br></strong>
+    <div class="form-group"><label>Type: </label><select class="mx-5" name="type" required>
+        <option selected value="experience"> Experience </option>
+        <option value="recommendation"> Recommendation </option>
+        <option value="agreement"> Agreement </option>
+        <option value="skills"> Skills </option>
+        <option value="educational"> Education </option>
+      </select>
+    <button type="submit">Issue certificate</button></div>
+  </form>
+  <hr>
+  {% endfor%}
+  <a href="/"><button>Home</button></a>
+</body>
+
+</html>

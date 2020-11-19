@@ -1,0 +1,23 @@
+<html lang="en">
+
+<body>
+  <h1>Website de Test API</h1>
+  <h2>Our Decentralized IDentifiers is : </h2>
+  <p>
+    <li><b>did:talao:talaonet:Ea20bD3C52B5812D93B6c444d3bCD05C18B3f406</b></li>
+  </p>
+  Identities
+  <hr>
+  {% for identity in identity_list%}
+    <p>Username : {{identity["username"]}} <br>
+       Name : {{identity["name"]}} <br>
+       Lastname : {{identity["lastname"]}} <br>
+       Did : {{identity["did"]}}</p>
+    <hr>
+  {% endfor%}
+
+  <a href="/create_identity"><button>Create an Identity</button></a>
+  <a href="/user_list"><button>User list</button></a>
+</body>
+
+</html>
