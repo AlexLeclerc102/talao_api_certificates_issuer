@@ -21,7 +21,7 @@ git clone https://github.com/AlexLeclerc102/talao_api_certificates_issuer.git
 
 [Flask](https://flask.palletsprojects.com/en/1.1.x/) : `$ pip install Flask`
 
-jwt : `pip install Flask-JWT`
+jwt : `$ pip install Flask-JWT`
 
 ## Usage
 
