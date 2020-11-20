@@ -101,7 +101,9 @@ def get_certificate_list():
         # the response is a list of certificate id you will need to request them if you need the data
         for id in response_json['certificate_list']:
             # get_certificate is used to request the data in the certificate using the certificate id
-            certificate = get_certificate(id)
+            # Tokens have a lifetime of 50 minutes, try to reuse them !
+            # But don't forget about the token's scope
+            certificate = get_certificate(id, token_data)
             if certificate == None:
                 return "Error during the request of certificate with id : " + id
             else:
@@ -115,7 +117,7 @@ def user_list():
         identity_list = identity.get_list()
         return render_template("user_list.html", identity_list = identity_list)
 
-def get_certificate(id):
+def get_certificate(id, token_data):
     data = {
         'grant_type': 'client_credentials',
         'redirect_uri': "",
@@ -124,18 +126,12 @@ def get_certificate(id):
         'code': "",
         'scope' : ''
     }
-    # First ask for a token:
-    response = requests.post(talao_url_token, data=data, auth=(client_id, client_secret))
-    print('step 2 : request for a token sent')
-    if response.status_code == 200 :
-        token_data = response.json()
-        print('step 3 : request sent')
-        # Then use it to request the certificate
-        headers = {'Content-Type': 'application/json', 'Authorization': 'Bearer %s' % token_data['access_token']}
-        data = {'certificate_id' : id}
-        response = requests.post(talao_url + '/api/v1/get_certificate', data=json.dumps(data), headers=headers)
-        return response.json()
-    return None
+    # Use the token_data passed to request the certificate
+    print("requesting certificate with id : " + id)
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Bearer %s' % token_data['access_token']}
+    data = {'certificate_id' : id}
+    response = requests.post(talao_url + '/api/v1/get_certificate', data=json.dumps(data), headers=headers)
+    return response.json()
 
 @app.route('/issue_certificate', methods=['POST'])
 def issue_certificate():
@@ -162,7 +158,7 @@ def issue_experience():
             'client_id': client_id,
             'client_secret': client_secret,
             'code': '',
-            'scope' : 'client:issue:experience'
+            'scope' : 'client:issue:experience' # You will need to have this scope allowed by talao.co
         }
         # First ask for a token:
         response = requests.post(talao_url_token, data=data, auth=(client_id, client_secret))

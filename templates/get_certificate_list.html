@@ -12,12 +12,12 @@
   Certificate list:
   <hr>
   {% for certificate in certificate_list%}
-    <p>title : {{certificate['certificate_data']["title"]}} <br>
-      start_date : {{certificate['certificate_data']["start_date"]}} <br>
-      end_date : {{certificate['certificate_data']["end_date"]}} <br>
-      type : {{certificate['certificate_data']["type"]}} <br>
-      description : {{certificate['certificate_data']["description"]}} <br>
-      skills : {{certificate['certificate_data']["skills"]}}</p>
+    <p>title : {{certificate["title"]}} <br>
+      start_date : {{certificate["start_date"]}} <br>
+      end_date : {{certificate["end_date"]}} <br>
+      type : {{certificate["type"]}} <br>
+      description : {{certificate["description"]}} <br>
+      skills : {{certificate["skills"]}}</p>
     <hr>
   {% endfor%}
   <a href="/"><button>Home</button></a>
